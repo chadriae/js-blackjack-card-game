@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a20a0a;
+}
+
+#game {
+  background-color: white;
+  height: 75vh;
+  width: 75vh;
+}
+
+#imageCard {
+  height: 210px;
+  width: 150px;
+}
+
+.button {
+  max-width: 50%;
+}
