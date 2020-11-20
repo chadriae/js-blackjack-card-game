@@ -10,22 +10,23 @@
 </head>
 <body>
 
-<div class="p-4 text-center " id="game">   
+<div class="p-4 text-center text-white border" id="game">
+    <div class="p-4 flex flex-nowrap"><img src='images/cardback.png' class="cardBack" id=""><img src="images/cardback.png" class="cardBack" id=""><img src="images/cardback.png" class="cardBack" id=""><img src="images/cardback.png" class="cardBack" id=""><img src="images/cardback.png" class="cardBack" id=""><img src="images/cardback.png" class="cardBack" id=""></div>
+   
     <div class="p-4 text-xl uppercase font-bold">Blackjack the card game </div> 
     <div>Keep drawing cards until you hit 21. If its higher, you lose the game.</div>
-    <div class="text-center m-4">
-        Do you want to play?
-    </div>
+    <div class="text-center m-4">Do you want to play?</div>
+
     <div class="text-center my-4">
-        <button class="bg-green-500 px-8 py-4 rounded-lg font-bold" id="confirm">HIT ME!</button>
-    </div>
+        <button class="px-8 py-4 rounded-lg font-bold bg-red-500" id="confirm">HIT ME!</button>
+        <button class="px-8 py-4 rounded-lg font-bold bg-red-500" id="stand">Stand</button>
+        <button class="px-8 py-4 rounded-lg font-bold bg-green-500" id="restart">Restart</button>
+    </div>    
+
     <div class="">
+        <div class="p-4 flex flex-nowrap"><img src='images/cardback.png' class="cardBack" id="card1"><img src="images/cardback.png" class="cardBack" id="card2"><img src="images/cardback.png" class="cardBack" id="card3"><img src="images/cardback.png" class="cardBack" id="card4"><img src="images/cardback.png" class="cardBack" id="card5"><img src="images/cardback.png" class="cardBack" id="card6"></div>
         <div class="p-4" id="drawnCard"></div>
-        <div class="p-4 inline-block align-middle" id="imageCard"><img></div>
-        <div class="p-4" id="currentScore"></div>
-    </div>
-    <div class="text-center my-4">
-        <button id="playAgain"></button>
+        <div class="p-4" id="playerScore"></div>
     </div>
 </div>
 

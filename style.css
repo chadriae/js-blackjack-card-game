@@ -10,18 +10,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a20a0a;
+  background-color: #8db596;
 }
 
-#game {
-  background-color: white;
-  height: 75vh;
-  width: 75vh;
-}
-
-#imageCard {
+.cardBack {
   height: 210px;
-  width: 150px;
+  width: 200px;
+  padding: 8px;
 }
 
 .button {
