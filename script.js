@@ -17,24 +17,24 @@ let clickCount = 0;
 // Function to show the hidden cards of the opponent after the player won, lost or clicked stand
 function showCards (clickCount, imagesArray, scoreArray) {
     for (i = 0; i < clickCount; i++) {
-        document.getElementById("computerCard"+ (i + 1)).src = imagesArray[(scoreArray[i]) - 1];
+        document.querySelector("#computerCard"+ (i + 1)).src = imagesArray[(scoreArray[i]) - 1];
     }
 }
 
 // Function to hide unnecessary buttons after the game ended
 function hideButtons () {
-    document.getElementById("confirm").style.display = "none";
-    document.getElementById("stand").style.display = "none";
+    document.querySelector("#confirm").style.display = "none";
+    document.querySelector("#stand").style.display = "none";
 }
 
 
 // Reload game button
-document.getElementById("restart").addEventListener("click", function () {
+document.querySelector("#restart").addEventListener("click", function () {
     location.reload();
 })
 
 // Stand situation
-document.getElementById("stand").addEventListener("click", function () {
+document.querySelector("#stand").addEventListener("click", function () {
 
     hideButtons();
 
@@ -56,9 +56,9 @@ document.getElementById("stand").addEventListener("click", function () {
 
 
 // Function for turning a card
-document.getElementById("confirm").addEventListener("click", function () {
+document.querySelector("#confirm").addEventListener("click", function () {
 // Get the amount of clicks to determine which card should be shown
-const countButton = document.getElementById("confirm");
+const countButton = document.querySelector("#confirm");
 countButton.onclick = clickCount++;
 
 // Function for a random number
@@ -73,24 +73,24 @@ playerScore = playerScore + playerNumber;
 computerScore = computerScore + computerNumber;
 
 if (playerScore < 21) {
-    document.getElementById("drawnCard").innerHTML = "You drew: " + playerNumber + ".";
-    document.getElementById("playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
-    document.getElementById("playerScore").innerHTML = `Your current score is: ${playerScore}.`
+    document.querySelector("#drawnCard").innerHTML = `You drew ${playerNumber}.`;
+    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
+    document.querySelector("#playerScore").innerHTML = `Your current score is: ${playerScore}.`;
     scoreArray.push(computerNumber);
 }
 
 if (playerScore == 21) {
-    document.getElementById("drawnCard").innerHTML = "You drew: " + playerNumber + ".";
-    document.getElementById("playerScore").innerHTML = `CONGRATS! YOU WON! You got ${playerScore} points. FYI your opponent got ${computerScore} points.`;
-    document.getElementById("playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
+    document.querySelector("#drawnCard").innerHTML = `You drew ${playerNumber}.`;
+    document.querySelector("#playerScore").innerHTML = `CONGRATS! YOU WON! You got ${playerScore} points. FYI your opponent got ${computerScore} points.`;
+    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
     hideButtons ();
     scoreArray.push(computerNumber);
     showCards(clickCount, imagesArray, scoreArray);
 }
 
 else if (playerScore > 21) {
-    document.getElementById("drawnCard").innerHTML = "You drew: " + playerNumber + ".";
-    document.getElementById("playerScore").innerHTML = `You lost. You got ${playerScore} points. You can play again by pressing the button. FYI your opponent got ${computerScore} points.`;
+    document.querySelector("#drawnCard").innerHTML = `You drew ${playerNumber}.`;
+    document.querySelector("#playerScore").innerHTML = `You lost. You got ${playerScore} points. You can play again by pressing the button. FYI your opponent got ${computerScore} points.`;
     hideButtons ();
     scoreArray.push(computerNumber);
     showCards(clickCount, imagesArray, scoreArray);
