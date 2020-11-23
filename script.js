@@ -18,8 +18,13 @@ let clickCount = 0;
 function showCards (clickCount, imagesArray, scoreArray) {
     for (i = 0; i < clickCount; i++) {
         document.getElementById("computerCard"+ (i + 1)).src = imagesArray[(scoreArray[i]) - 1];
-        console.log(imagesArray[(scoreArray[i]) - 1]);
     }
+}
+
+// Function to hide unnecessary buttons after the game ended
+function hideButtons () {
+    document.getElementById("confirm").style.display = "none";
+    document.getElementById("stand").style.display = "none";
 }
 
 
@@ -31,9 +36,7 @@ document.getElementById("restart").addEventListener("click", function () {
 // Stand situation
 document.getElementById("stand").addEventListener("click", function () {
 
-    document.getElementById("confirm").style.display = "none";
-    document.getElementById("stand").style.display = "none";
-
+    hideButtons();
 
     if(playerScore > computerScore) {  
     alert(`You win! You have ${playerScore} points and your opponent has ${computerScore} points.`);
@@ -80,20 +83,17 @@ if (playerScore == 21) {
     document.getElementById("drawnCard").innerHTML = "You drew: " + playerNumber + ".";
     document.getElementById("playerScore").innerHTML = `CONGRATS! YOU WON! You got ${playerScore} points. FYI your opponent got ${computerScore} points.`;
     document.getElementById("playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
-    document.getElementById("computerCard"+ clickCount).src = imagesArray[computerNumber - 1];
-    document.getElementById("confirm").style.display = "none";
-    document.getElementById("stand").style.display = "none";
+    hideButtons ();
     scoreArray.push(computerNumber);
+    showCards(clickCount, imagesArray, scoreArray);
 }
 
 else if (playerScore > 21) {
     document.getElementById("drawnCard").innerHTML = "You drew: " + playerNumber + ".";
-    document.getElementById("playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
-    document.getElementById("computerCard"+ clickCount).src = imagesArray[computerNumber - 1];
     document.getElementById("playerScore").innerHTML = `You lost. You got ${playerScore} points. You can play again by pressing the button. FYI your opponent got ${computerScore} points.`;
-    document.getElementById("confirm").style.display = "none";
-    document.getElementById("stand").style.display = "none";
+    hideButtons ();
     scoreArray.push(computerNumber);
+    showCards(clickCount, imagesArray, scoreArray);
 }
 
 });
