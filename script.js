@@ -1,9 +1,8 @@
-// TO DO
-// - use cards > 10 in the game
+// TODO: use cards > 10 in the game
 
 
 (() => {
-let imagesArray = ['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 'images/10.png'];
+let imagesArray = ['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 'images/11.png'];
 
 // Array for the (hidden) score of the opponent
 let scoreArray = [];
@@ -32,6 +31,13 @@ function hideButtons () {
 document.querySelector("#restart").addEventListener("click", function () {
     location.reload();
 })
+
+// Function to tell the score of the card
+function scoreCard () {
+    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
+    document.querySelector("#playerScore").innerHTML = `Your current score is: ${playerScore}.`;
+    scoreArray.push(computerNumber);
+}
 
 // Stand situation
 document.querySelector("#stand").addEventListener("click", function () {
@@ -66,25 +72,45 @@ let randomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
 };
 
-playerNumber = randomNumber(1, 10);
-computerNumber = randomNumber(1, 10);
+playerNumber = randomNumber(1, 12);
+computerNumber = randomNumber(1, 12);
 
+console.log(playerNumber);
+console.log(computerNumber);
+
+if (playerNumber == 11) {
+    playerScore + 10;
+}
+
+if (computerNumber == 11) {
+    computerScore + 10;
+}
+
+else {
 playerScore = playerScore + playerNumber;
 computerScore = computerScore + computerNumber;
+}
 
 if (playerScore < 21) {
-    document.querySelector("#drawnCard").innerHTML = `You drew ${playerNumber}.`;
-    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
-    document.querySelector("#playerScore").innerHTML = `Your current score is: ${playerScore}.`;
-    scoreArray.push(computerNumber);
+    if (playerNumber == 11) {
+        document.querySelector("#drawnCard").innerHTML = `You drew a king.`;
+        document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
+        document.querySelector("#playerScore").innerHTML = `Your current score is: ${playerScore}.`;
+        scoreArray.push(computerNumber);
+    }
+    else {
+        document.querySelector("#drawnCard").innerHTML = `You drew ${playerNumber}.`;
+        scoreCard();
+    }
 }
 
 if (playerScore == 21) {
+
     document.querySelector("#drawnCard").innerHTML = `You drew ${playerNumber}.`;
     document.querySelector("#playerScore").innerHTML = `CONGRATS! YOU WON! You got ${playerScore} points. FYI your opponent got ${computerScore} points.`;
-    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
     hideButtons ();
     scoreArray.push(computerNumber);
+    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
     showCards(clickCount, imagesArray, scoreArray);
 }
 
@@ -93,6 +119,7 @@ else if (playerScore > 21) {
     document.querySelector("#playerScore").innerHTML = `You lost. You got ${playerScore} points. You can play again by pressing the button. FYI your opponent got ${computerScore} points.`;
     hideButtons ();
     scoreArray.push(computerNumber);
+    document.querySelector("#playerCard"+ clickCount).src = imagesArray[playerNumber - 1];
     showCards(clickCount, imagesArray, scoreArray);
 }
 
